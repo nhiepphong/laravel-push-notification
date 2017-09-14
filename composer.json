@@ -1,0 +1,23 @@
+{
+    "name": "nhiepphong/laravel-push-notification",
+    "description": "Laravel 5 Package for sending push notifications to Android and iOS devices. Same as witty's with added support for Laravel 5.2, 5.3, 5.4, 5.5",
+    "keywords": ["android", "ios", "push", "notification", "laravel", "laravel 5"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nhiep Phong",
+            "email": "duyphong.tran@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/support": "5.1.* | 5.2.* | 5.3.* | 5.4.* | 5.5.*",
+        "sly/notification-pusher": "2.x"
+    },
+    "autoload": {
+        "psr-0": {
+            "Nhiepphong\\LaravelPushNotification": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
