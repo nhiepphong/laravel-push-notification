@@ -63,6 +63,46 @@ PushNotification::app('iOS')
                 ->send('Hello World, i`m a push message');
 
 ```
+Where app argument `appNameIOS` refers to defined service in config file.
+To multiple devices and optioned message:
+```php
+$devices = PushNotification::DeviceCollection(array(
+    PushNotification::Device('token', array('badge' => 5)),
+    PushNotification::Device('token1', array('badge' => 1)),
+    PushNotification::Device('token2')
+));
+$message = PushNotification::Message('Message Text',array(
+    'badge' => 1,
+    'sound' => 'example.aiff',
+    
+    'actionLocKey' => 'Action button title!',
+    'locKey' => 'localized key',
+    'locArgs' => array(
+        'localized args',
+        'localized args',
+    ),
+    'launchImage' => 'image.jpg',
+    
+    'custom' => array('custom data' => array(
+        'we' => 'want', 'send to app'
+    ))
+));
+
+collection = PushNotification::app('appNameIOS')
+    ->to($devices)
+    ->send($message);
+
+// get response for each device push
+foreach ($collection->pushManager as $push) {
+    $response = $push->getAdapter()->getResponse();
+}
+
+// access to adapter for advanced settings
+$push = PushNotification::app('appNameAndroid');
+$push->adapter->setAdapterParameters(['sslverifypeer' => false]);
+```
+This package is wrapps [Notification Package] and adds some flavor to it.
+```
 
 #### Usage advice
 This package should be used with [Laravel Queues], so pushes dont blocks the user and are processed in the background, meaning a better flow.
