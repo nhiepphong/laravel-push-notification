@@ -40,7 +40,7 @@ class PushNotificationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['push_notification'] = $this->app->share(function($app)
+        $this->app->singleton('push_notification', function($app)
         {
             return new PushNotificationBuilder;
         });
